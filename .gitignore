@@ -1,5 +1,44 @@
-bin/
-obj/
-/packages/
-riderModule.iml
-/_ReSharper.Caches/
+# Build
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+[Ll]og/
+[Ll]ogs/
+
+# IDE
+.idea/
+.vs/
+*.sln.iml
+*.DotSettings.user
+*.user
+*.suo
+*.userprefs
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+artifacts/
+
+# Tests
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+TestResults/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Secrets
+appsettings.*.local.json
+*.env
+secrets.json
