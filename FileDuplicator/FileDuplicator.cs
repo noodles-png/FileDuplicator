@@ -2,17 +2,35 @@
 using System.IO;
 
 
-public class FileNamer
+public class FileCounter
 {
     string _path = Directory.GetCurrentDirectory();
-    string _fileName = ;
-    private string _file = "";
+    public string NewFileName { get; }
 
-    public FileNamer(string path) // ToDo: Choose a better name
+    public FileCounter(string path) 
     {
         string srcFile =  Path.GetFileNameWithoutExtension(path);
+        int highestCounter = 1;
+        int newCounter = 0;
+        int kwIndex = srcFile.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase);
+        string prefixName = srcFile[..kwIndex];
         
-        int extIndex = srcFile.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase);
+        foreach (string file in Directory.EnumerateFiles(path))
+        {
+            string fileName = Path.GetFileNameWithoutExtension(file);
+            int checkIndex = int.Parse(fileName[(kwIndex + 2)..]);
+            if (checkIndex > highestCounter)
+            {
+                highestCounter = checkIndex;
+            }
+        }
         
+        newCounter = highestCounter + 1;
+        NewFileName = prefixName + "kw" + newCounter.ToString("D2");
     }
+}
+
+public class FileDuplicator
+{
+    
 }
