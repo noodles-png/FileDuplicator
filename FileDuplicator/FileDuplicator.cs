@@ -15,14 +15,20 @@ public class FileCounter
         _directory = Path.GetDirectoryName(path);
         
         string srcFile =  Path.GetFileNameWithoutExtension(path);
-        int highestCounter = 1;
-        int newCounter = 0;
         int kwIndex = srcFile.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase); // Returns the index of the string where "kw" is
         string prefixName = srcFile[..kwIndex];
+        
+        int highestCounter = 1;
+        int newCounter = 0;
         
         foreach (string file in Directory.EnumerateFiles(_directory))
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
+            int fileKwIndex = fileName.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase);
+
+            if (fileKwIndex < 0) // Ignores files with keyword
+                continue;
+            
             int checkIndex = int.Parse(fileName[(kwIndex + 2)..]);
             if (checkIndex > highestCounter)
             {

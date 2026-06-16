@@ -27,7 +27,7 @@ The executable program will be in `bin/Release/net10.0/win-x64/publish/`.
 
 ## Configuration
 The counter is searched via the keyword KW ("Kalenderwoche": german for calendar week"). It can be changed to any other 
-keyword, the relevant section can be found in FileDuplicator.cs, line 20 and 33: 
+keyword, the relevant section can be found in FileDuplicator.cs: 
 
 ```csharp
 int kwIndex = srcFile.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase);

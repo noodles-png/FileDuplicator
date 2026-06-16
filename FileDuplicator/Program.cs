@@ -4,7 +4,7 @@
 try
 {
    var program = new FileCounter(
-       @"Path/Directory"); // Insert file path here
+       @"Directory/Path"); // Insert Path here
    program.DuplicateFile();
 }
 catch (Exception ex)
