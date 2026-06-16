@@ -1,8 +1,17 @@
 ﻿using FileDuplicator;
 
+
 try
 {
-    string directoryPath =
-        "C:\\Users\\PatrickCarillo\\OneDrive - BBQ - Baumann Bildung und Qualifizierung GmbH\\Dokumente\\Berichtsheft_BBQ_2026-27";
-    
+   var program = new FileCounter(
+       @"Path/Directory");
+   program.DuplicateFile();
 }
+catch (Exception ex)
+{
+   Console.WriteLine(ex.Message);
+}
+
+
+
+

@@ -4,18 +4,23 @@ using System.IO;
 
 public class FileCounter
 {
-    string _path = Directory.GetCurrentDirectory();
-    public string NewFileName { get; }
+    private string _fullPath;
+    private string _directory;
+    public string newName { get; }
 
+    // Looks for file with highest counter and creates new Name with +1 on highest counter (e.g. KW24 -> KW25)
     public FileCounter(string path) 
     {
+        _fullPath = path;
+        _directory = Path.GetDirectoryName(path);
+        
         string srcFile =  Path.GetFileNameWithoutExtension(path);
         int highestCounter = 1;
         int newCounter = 0;
-        int kwIndex = srcFile.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase);
+        int kwIndex = srcFile.LastIndexOf("kw", StringComparison.OrdinalIgnoreCase); // Returns the index of the string where "kw" is
         string prefixName = srcFile[..kwIndex];
         
-        foreach (string file in Directory.EnumerateFiles(path))
+        foreach (string file in Directory.EnumerateFiles(_directory))
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
             int checkIndex = int.Parse(fileName[(kwIndex + 2)..]);
@@ -24,13 +29,15 @@ public class FileCounter
                 highestCounter = checkIndex;
             }
         }
-        
         newCounter = highestCounter + 1;
-        NewFileName = prefixName + "kw" + newCounter.ToString("D2");
+        newName = prefixName + "KW" + newCounter.ToString("D2");
     }
-}
-
-public class FileDuplicator
-{
     
+    // Creates new Copy with the new counter name 
+    public void DuplicateFile()
+    {
+        string extension = Path.GetExtension(_fullPath);
+        string newFilePath = Path.Combine(_directory, newName + extension);
+        File.Copy(_fullPath, newFilePath);
+    }
 }
