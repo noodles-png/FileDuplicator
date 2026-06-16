@@ -30,7 +30,7 @@ public class FileCounter
             }
         }
         newCounter = highestCounter + 1;
-        newName = prefixName + "KW" + newCounter.ToString("D2");
+        newName = prefixName + "KW" + newCounter.ToString("D2"); // Change the KW to any other string that ends before the counter
     }
     
     // Creates new Copy with the new counter name 
